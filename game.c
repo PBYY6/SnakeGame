@@ -77,11 +77,24 @@ void createBigFood(Game *game, Food *food)
 
 void eatBigFood (Game *game, Food *food) {
 
+    //计算大得分点已经存在了几个时间单位
+    int usedTime = 5 - game->bigFoodTime;
+
+    //大得分点消失
     game->bigFood = 0;
 
     game->bigFoodTime = 0;
 
     food->type = 0;
+
+    //根据吃掉大得分点的时间决定下一次规则
+    if (usedTime % 2 == 1) {
+        //奇数时间
+        game->needFood = 3;
+    } else {
+        //偶数时间
+        game->needFood = 4;
+    }
 }
 
 void updateBigFood (Game *game, Food *food) {
@@ -116,6 +129,10 @@ void updateBigFood (Game *game, Food *food) {
 
             game->bigScore = 0;
 
+            //大得分点没有被吃
+            //下一轮恢复默认规则
+            game->needFood = 5;
+            
             createFood (food);
         }
     }

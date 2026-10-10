@@ -7,8 +7,13 @@
 #include"food.h"
 #include"score.h"
 #include"game.h"
+#include"screen.h"
+
+
 int main () {
     printf ("Snake Game Start !\n");
+    Sleep (1000);
+    clearScreen ();
 
     Snake snake;
     Food food;
@@ -76,7 +81,8 @@ int main () {
             break;
         }
 
-        system ("cls");
+        //system ("cls");
+        clearScreen ();
 
         printMap (&snake, &food);
 
